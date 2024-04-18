@@ -1,5 +1,6 @@
 from flask import Flask, request
 import pymongo 
+import os
 
 app = Flask(__name__)
 
@@ -11,7 +12,7 @@ def hello():
 @app.route('/getinfo')
 def getinfo():
   print("vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv")
-  connectionString = "mongodb://jewlab136cosmosdb:rXtjjWZWbSqKRV1UT2jawwsZl2eAFwTQ0LvPh6G9vk05WYmjDE68bJ3WDNuV0Yc5hGlCQ9yvmYWtACDbEyI4mw==@jewlab136cosmosdb.mongo.cosmos.azure.com:10255/?ssl=true&retrywrites=false&replicaSet=globaldb&maxIdleTimeMS=120000&appName=@jewlab136cosmosdb@"
+  connectionString = os.environ.get('CONNECTION_STRING')
   databaseName = "jewdatabase"
   collectionName = "jewdemocollection"
   myclient = pymongo.MongoClient(connectionString)
